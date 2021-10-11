@@ -58,7 +58,10 @@ class BaseAuthTransaction: NSObject, AuthTransaction {
             return false
         }
         let items = self.handler.values(fromComponents: components)
-        guard has(state: self.state, inItems: items) else { return false }
+        guard has(state: self.state, inItems: items) else {
+            self.callback(.failure(AuthenticationError(string: "state mismatch", statusCode: 401)))
+            return false
+        }
         if items["error"] != nil {
             self.callback(.failure(AuthenticationError(info: items, statusCode: 0)))
         } else {
