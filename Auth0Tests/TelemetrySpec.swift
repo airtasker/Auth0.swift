@@ -61,23 +61,8 @@ class TelemetrySpec: QuickSpec {
 
         describe("versionInformation") {
 
-            let bundle = MockedBundle()
-
-            beforeEach {
-                bundle.version = nil
-            }
-
             var subject: [String: Any] {
-                return Telemetry.versionInformation(bundle: bundle)
-            }
-
-            pending("should return bundle default version if nil") {
-                expect(subject["version"] as? String) == "0.0.0"
-            }
-
-            pending("should return bundle version") {
-                bundle.version = "1.0.0"
-                expect(subject["version"] as? String) == "1.0.0"
+                return Telemetry.versionInformation()
             }
 
             it("should return lib name") {
@@ -144,6 +129,23 @@ class TelemetrySpec: QuickSpec {
                 #else
                 expect(env["unknown"]).toNot(beNil())
                 #endif
+            }
+        }
+        
+        describe("adding view") {
+
+            var telemetry = Telemetry()
+            let view = "foo"
+
+            beforeEach {
+                telemetry.addView(view: view)
+            }
+            
+            it("should have correct info") {
+                let data = telemetry.value!.a0_decodeBase64URLSafe()
+                let info = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                let env = info["env"] as! [String : String]
+                expect(env["view"]) == view
             }
         }
 
@@ -229,19 +231,4 @@ class TelemetrySpec: QuickSpec {
 
     }
 
-}
-
-
-class MockedBundle: Bundle {
-
-    var version: String? = nil
-
-    override var infoDictionary: [String : Any]? {
-        if let version = self.version {
-            return [
-                "CFBundleShortVersionString": version
-            ]
-        }
-        return nil
-    }
 }

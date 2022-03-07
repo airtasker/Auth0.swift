@@ -9,6 +9,10 @@
 
 Swift toolkit that lets you communicate efficiently with many of the [Auth0 API](https://auth0.com/docs/api/info) functions and enables you to seamlessly integrate the Auth0 login.
 
+> ❗ **Auth0.swift 2.0.0 beta is out**
+<br>It includes support for async/await and Combine, thread-safe credentials renewal from the Credentials Manager, simplified error handling, and more. The GA release is planned for the third week of February.
+<br>See [#637](https://github.com/auth0/Auth0.swift/issues/637) for more information.
+
 ## Table of Contents
 
 - [Requirements](#requirements)
@@ -34,7 +38,7 @@ Swift toolkit that lets you communicate efficiently with many of the [Auth0 API]
 If you are using [Cocoapods](https://cocoapods.org), add this line to your `Podfile`:
 
 ```ruby
-pod 'Auth0', '~> 1.36'
+pod 'Auth0', '~> 1.38'
 ```
 
 Then run `pod install`.
@@ -46,7 +50,7 @@ Then run `pod install`.
 If you are using [Carthage](https://github.com/Carthage/Carthage), add the following line to your `Cartfile`:
 
 ```ruby
-github "auth0/Auth0.swift" ~> 1.36
+github "auth0/Auth0.swift" ~> 1.38
 ```
 
 Then run `carthage bootstrap --use-xcframeworks`.
@@ -57,17 +61,17 @@ Then run `carthage bootstrap --use-xcframeworks`.
 
 If you are using the Swift Package Manager, open the following menu item in Xcode:
 
-**File > Swift Packages > Add Package Dependency...**
+**File > Add Packages...**
 
-In the **Choose Package Repository** prompt add this url: 
+In the **Search or Enter Package URL** search box enter this url: 
 
 ```
 https://github.com/auth0/Auth0.swift.git
 ```
 
-Then press **Next** and complete the remaining steps.
+Then select the dependency rule and press **Add Package**.
 
-> For further reference on SPM, check [its official documentation](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
+> For further reference on SPM, check [its official documentation](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
 
 ## Getting Started
 
