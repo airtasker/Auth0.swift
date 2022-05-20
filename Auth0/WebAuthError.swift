@@ -6,7 +6,7 @@ import Foundation
  */
 public struct WebAuthError: Auth0Error {
 
-    enum Code: Equatable {
+    public enum Code: Equatable {
         case noBundleIdentifier
         case invalidInvitationURL(String)
         case userCancelled
@@ -17,7 +17,7 @@ public struct WebAuthError: Auth0Error {
         case unknown(String)
     }
 
-    let code: Code
+    public let code: Code
 
     init(code: Code, cause: Error? = nil) {
         self.code = code
