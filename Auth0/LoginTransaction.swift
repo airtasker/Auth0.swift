@@ -47,12 +47,6 @@ class LoginTransaction: NSObject, AuthTransaction {
             self.finishUserAgent(with: .failure(error))
             return false
         }
-
-        let items = self.handler.values(fromComponents: components)
-        guard has(state: self.state, inItems: items) else {
-            self.callback(.failure(WebAuthError(code: .other, cause: AuthenticationError(description: "state mismatch", statusCode: 401))))
-            return false
-        }
         
         if items["error"] != nil {
             let error = WebAuthError(code: .other, cause: AuthenticationError(info: items))
